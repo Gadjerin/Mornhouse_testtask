@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MainFragment">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getRndFactBtn">
+
+        <LinearLayout
+            android:id="@+id/requestHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <EditText
+        android:id="@+id/numberEdit"
+        android:layout_width="210dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:hint="Your number"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/getFactBtn"
+        android:layout_width="210dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        android:text="Get fact"
+        app:layout_constraintEnd_toEndOf="@+id/numberEdit"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/numberEdit"
+        app:layout_constraintTop_toBottomOf="@+id/numberEdit" />
+
+    <Button
+        android:id="@+id/getRndFactBtn"
+        android:layout_width="210dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="38dp"
+        android:text="get random fact"
+        app:layout_constraintEnd_toEndOf="@+id/getFactBtn"
+        app:layout_constraintStart_toStartOf="@+id/getFactBtn"
+        app:layout_constraintTop_toBottomOf="@+id/getFactBtn" />
+</androidx.constraintlayout.widget.ConstraintLayout>
