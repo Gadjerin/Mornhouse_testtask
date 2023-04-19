@@ -26,7 +26,6 @@ public class MainViewModel extends AndroidViewModel {
     private static final String TAG = "TestTaskModel";
     private static final String BASE_URL = "http://numbersapi.com/";
     private final OkHttpClient mHttpClient = new OkHttpClient();
-    private volatile int AUTO_INC = 0;
 
     private Application mApplication;
     private NumberFactDB mDb;
@@ -46,31 +45,16 @@ public class MainViewModel extends AndroidViewModel {
         }
     };
 
-    private Observer<Integer> mAutoIncObs = new Observer<Integer>() {
-        @Override
-        public void onChanged(Integer integer) {
-            if (integer != null)
-                AUTO_INC = integer + 1;
-            Log.d(TAG, "auto increment changed = " + AUTO_INC);
-        }
-    };
-
     public MainViewModel(@NonNull Application application) {
         super(application);
         mApplication = application;
         mDb = Room.databaseBuilder(mApplication.getApplicationContext(),
                 NumberFactDB.class, "number-fact.db").build();
-        mDb.numberFactDao().getMaxId().observeForever(mAutoIncObs);
         mNumberFacts = mDb.numberFactDao().loadAll();
     }
 
     public LiveData<List<NumberFact>> getNumberFacts() {
         return mNumberFacts;
-    }
-
-    @Override
-    protected void onCleared() {
-        mDb.numberFactDao().getMaxId().removeObserver(mAutoIncObs);
     }
 
     public void numberFactCheck(int number) {
@@ -92,8 +76,7 @@ public class MainViewModel extends AndroidViewModel {
         int number = Integer.parseInt(numberFact.substring(0, numberEndIdx));
         String fact = numberFact.substring(numberEndIdx + 1);
 
-        NumberFact nf = new NumberFact(AUTO_INC, number, fact);
-        NumberFactDao numberFactDao = mDb.numberFactDao();
-        numberFactDao.insert(nf);
+        NumberFact nf = new NumberFact(number, fact);
+        mDb.numberFactDao().insert(nf);
     }
 }

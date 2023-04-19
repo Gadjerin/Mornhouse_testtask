@@ -9,8 +9,7 @@ import androidx.room.PrimaryKey;
 public class NumberFact {
     public NumberFact(){}
 
-    public NumberFact(int id, int number, String fact) {
-        this.id = id;
+    public NumberFact(int number, String fact) {
         this.number = number;
         this.fact = fact;
     }
@@ -21,7 +20,7 @@ public class NumberFact {
         return number + " " + fact;
     }
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int id;
 
     @ColumnInfo

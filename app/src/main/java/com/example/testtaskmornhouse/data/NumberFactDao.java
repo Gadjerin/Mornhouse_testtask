@@ -11,9 +11,6 @@ import java.util.List;
 
 @Dao
 public interface NumberFactDao {
-    @Query("SELECT MAX(id) FROM number_fact")
-    LiveData<Integer> getMaxId();
-
     @Query("SELECT * FROM number_fact")
     LiveData<List<NumberFact>> loadAll();
 
